@@ -45,7 +45,8 @@ public class BlogServiceImpl implements BlogService {
 	 */
 	@Override
 	public List<Blog> countList() {
-		return null;
+		BlogExample example = new BlogExample();
+		return blogMapper.selectByExample(example);
 	}
 
 	/**
