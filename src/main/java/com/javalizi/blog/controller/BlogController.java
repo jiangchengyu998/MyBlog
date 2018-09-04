@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ²©¿ÍController²ã
+ * åšå®¢
  * @author Administrator
  *
  */
@@ -43,7 +43,7 @@ public class BlogController {
 	@Resource
 	private CommentService commentService;
 
-	@ApiOperation(value = "·ÖÒ³²éÑ¯ËùÓĞµÄ²©¿Í", notes = "·ÖÒ³²éÑ¯ËùÓĞµÄ²©¿Í")
+	@ApiOperation(value = "è·å–æ‰€æœ‰blog", notes = "è·å–æ‰€æœ‰blog")
 	@RequestMapping(method = RequestMethod.GET)
 	public WebResponse<PageInfo<Blog>> getAll(Blog blog,
 											  @RequestParam(required = false, defaultValue = "1") int start,
@@ -58,12 +58,12 @@ public class BlogController {
 	}
 	
 	/**
-	 * ÇëÇó²©¿ÍÏêÏ¸ĞÅÏ¢
+	 * æ ¹æ®idè·å–blog
 	 * @param id
 	 * @return
 	 * @throws Exception
 	 */
-	@ApiOperation(value = "¸ù¾İid²éÑ¯²©¿Í", notes = "¸ù¾İid²éÑ¯²©¿Í")
+	@ApiOperation(value = "æ ¹æ®idè·å–blog", notes = "æ ¹æ®idè·å–blog")
 	@RequestMapping(value = "/articles/{id}", method = RequestMethod.GET)
 	public String details(@PathVariable("id") Integer id, HttpServletRequest request ){
 		Blog blog=blogService.findById(id);
@@ -82,13 +82,13 @@ public class BlogController {
 		request.setAttribute("blog", blog);
 		request.setAttribute("commentList", commentService.list(map));
 		request.setAttribute("pageCode", this.getUpAndDownPageCode(blogService.getLastBlog(id), blogService.getNextBlog(id), request.getServletContext().getContextPath()));
-		request.setAttribute("pageTitle", blog.getTitle()+"java¿ªÔ´²©¿ÍÏµÍ³");
+		request.setAttribute("pageTitle", blog.getTitle()+"javaå¼€æº");
 		request.setAttribute("mainPage", "blog/view.html");
 		return "index";
 	}
 
 	/**
-	 * »ñÈ¡ÉÏÒ»Æª²©¿ÍºÍÏÂÒ»Æª²©¿Í
+	 *
 	 * @param lastBlog
 	 * @param nextBlog
 	 * @param projectContext
@@ -97,15 +97,15 @@ public class BlogController {
 	private String getUpAndDownPageCode(Blog lastBlog,Blog nextBlog,String projectContext){
 		StringBuffer pageCode=new StringBuffer();
 		if(lastBlog==null || lastBlog.getId()==null){
-			pageCode.append("<p>ÉÏÒ»Æª£ºÃ»ÓĞÁË</p>");
+			pageCode.append("<p>æ²¡æœ‰äº†</p>");
 		}else{
-			pageCode.append("<p>ÉÏÒ»Æª£º<a href='"+projectContext+"/blog/articles/"+lastBlog.getId()+".html'>"+lastBlog.getTitle()+"</a></p>");
+			pageCode.append("<p>ä¸‹ä¸€ç¯‡<a href='"+projectContext+"/blog/articles/"+lastBlog.getId()+".html'>"+lastBlog.getTitle()+"</a></p>");
 		}
 
 		if(nextBlog==null || nextBlog.getId()==null){
-			pageCode.append("<p>ÏÂÒ»Æª£ºÃ»ÓĞÁË</p>");
+			pageCode.append("<p>æ²¡æœ‰äº†</p>");
 		}else{
-			pageCode.append("<p>ÏÂÒ»Æª£º<a href='"+projectContext+"/blog/articles/"+nextBlog.getId()+".html'>"+nextBlog.getTitle()+"</a></p>");
+			pageCode.append("<p>ä¸Šä¸€ç¯‡<a href='"+projectContext+"/blog/articles/"+nextBlog.getId()+".html'>"+nextBlog.getTitle()+"</a></p>");
 		}
 		return pageCode.toString();
 	}
