@@ -25,6 +25,8 @@ public class BlogTypeServiceImpl implements BlogTypeService {
 	@Override
 	public List<BlogType> countList() {
 		BlogTypeExample example = new BlogTypeExample();
+//		example.createCriteria().
+		example.setOrderByClause("orderno");
 		return blogTypeMapper.selectByExample(example);
 	}
 

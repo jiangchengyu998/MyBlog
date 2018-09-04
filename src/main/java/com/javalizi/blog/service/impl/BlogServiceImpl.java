@@ -35,7 +35,7 @@ public class BlogServiceImpl implements BlogService {
 		BlogExample example = new BlogExample();
 		BlogExample.Criteria criteria = example.createCriteria();
 		PageHelper.startPage(start, size);
-		List<Blog> blogs = blogMapper.selectByExample(example);
+		List<Blog> blogs = blogMapper.selectByExampleWithBLOBs(example);
 		return new PageInfo<>(blogs);
 	}
 
@@ -46,7 +46,7 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<Blog> countList() {
 		BlogExample example = new BlogExample();
-		return blogMapper.selectByExample(example);
+		return blogMapper.selectByExampleWithBLOBs(example);
 	}
 
 	/**

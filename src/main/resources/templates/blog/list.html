@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <div id="list">
-<div class="data_list">
-	  		<div class="data_list_title">
-			<img th:src="@{/images/list_icon.png}"/>
-			最新博客</div>
-	  		
-	  		<div class="datas">
-	  			<ul th:each="blog : ${blogList }">
-	  				<li style="margin-bottom: 30px">
-	  					<span class="date">
-							<!--<a th:href="@{/blog/articles/${blog.id }.html}"> <p th:value="${blog.releaseDate }" /></a>-->
-						</span>
-					  	<span class="title">
-							<a th:href="@{/blog/articles/${blog.id }.html}" th:text="${blog.title }"></a>
-						</span>
-						<span class="summary" th:text="${blog.summary }"></span>
-					  	<!--<span class="img">-->
-					  		<!--<c:forEach var="image" items="${blog.imageList }">-->
-						  		<!--<a href="/blog/articles/${blog.id }.html">${image}</a>-->
-						  		<!--&nbsp;&nbsp;-->
-					  		<!--</c:forEach>-->
-					  	<!--</span>-->
-					  	<!--<span class="info">发表于 <fmt:formatDate value="${blog.releaseDate }" type="date" pattern="yyyy-MM-dd HH:mm"/> 阅读(${blog.clickHit }) 评论(${blog.replyHit }) </span>-->
+    <div class="data_list">
+		<div class="data_list_title"><img th:src="@{/images/list_icon.png}"/>最新博客</div>
+	    <div class="datas">
+			<ul th:each="blog : ${pageInfo.list }">
+				<li style="margin-bottom: 30px">
+					<span class="date">
+						<a th:href="@{/blog/articles/${blog.id }.html}">
+							<dd th:text="${#dates.format(blog.releasedate, 'yyyy年MM月dd日')}">2014-12-01</dd>
+						</a>
+					</span>
+					<span class="title">
+						<a th:href="@{/blog/articles/${blog.id }.html}" th:text="${blog.title }"></a>
+					</span>
+					<span class="summary" th:text="${'摘要：'+ blog.summary + '...'}"></span>
 
-	  				</li>
-	  				 <hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;" />
-	  			</ul>
-	  		</div>
-	  	</div>
- <!--<div>-->
-	<!--<nav>-->
-	  <!--<ul class="pagination pagination-sm">-->
-	  	<!--${pageCode }-->
-	  <!--</ul>-->
-	<!--</nav>-->
- <!--</div>-->
+					<div>
+						<span style="display: inline-block" class="img" th:each="image : ${blog.imageList }">
+							<a th:href="@{/blog/articles/${blog.id }.html}" th:utext="${image}"></a>
+						</span>
+					</div>
+					<span class="info">
+						<dd th:text="${'发表于'+#dates.format(blog.releasedate, 'yyyy-MM-dd hh:mm:ss') + ' 阅读('+ blog.clickhit +') 评论(' +blog.replyhit +')'}"></dd>
+					</span>
+				</li>
+				<hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;" />
+			</ul>
+		</div>
+    </div>
+	<div>
+		<nav>
+		  <ul class="pagination pagination-sm" th:utext="${pageCode }">
+		  </ul>
+		</nav>
+	</div>
 </div>
 </html>
 	  	

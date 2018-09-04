@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" th:href="@{/bootstrap3/css/bootstrap.min.css}">
@@ -52,12 +54,10 @@
                 </div>
                 <div class="datas">
                     <ul th:each="blogTypeCount :  ${blogTypeCountList }">
-                        <li><span><a th:href="@{/index.html?typeId=${blogTypeCount.id}}" th:text="${blogTypeCount.typename }"></a></span></li>
+                        <li><span><a th:href="@{/index.html?typeId=${blogTypeCount.id}}" th:text="${blogTypeCount.typename +' (' + blogTypeCount.orderno + ')' }"></a></span></li>
                     </ul>
                 </div>
             </div>
-
-
 
             <!--<div class="data_list">-->
                 <!--<div class="data_list_title">-->
