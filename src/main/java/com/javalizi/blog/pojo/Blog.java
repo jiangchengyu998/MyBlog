@@ -19,7 +19,7 @@ public class Blog {
 
     private Integer typeid;
 
-    private String keyword;
+    private String keyword; // 关键字 空格隔开
 
     private String content;
 

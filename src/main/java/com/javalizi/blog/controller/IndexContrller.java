@@ -37,13 +37,17 @@ public class IndexContrller {
 	 * 请求主页
 	 * @return
 	 */
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String index(
 			            @RequestParam(value="page",required=false,defaultValue = "0")int page, // 当前页
                         @RequestParam(value="typeId",required=false)String typeId,
                         @RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
                         HttpServletRequest request){
-		PageInfo<Blog> pageInfo = blogService.selectByPage(new Blog(), page, 8);
+		Blog b = new Blog();
+		if(StringUtil.isNotEmpty(typeId)){
+			b.setTypeid(Integer.parseInt(typeId));
+		}
+		PageInfo<Blog> pageInfo = blogService.selectByPage(b, page, 8);
 		for(Blog blog:pageInfo.getList()){
 			List<String> imageList=blog.getImageList();
 			String blogInfo=blog.getContent();
@@ -68,7 +72,7 @@ public class IndexContrller {
 		List<BlogType> blogTypeCountList = blogTypeService.countList();
         request.setAttribute("blogTypeCountList", blogTypeCountList);
         request.setAttribute("mainPage", "blog/list.html");
-		request.setAttribute("pageCode", PageUtil.genPagination(request.getContextPath()+"/", pageInfo.getTotal(), page, 8, param.toString()));
+		request.setAttribute("pageCode", PageUtil.genPagination(request.getContextPath()+"/index", pageInfo.getTotal(), page, 8, param.toString()));
 		return "index";
 	}
 

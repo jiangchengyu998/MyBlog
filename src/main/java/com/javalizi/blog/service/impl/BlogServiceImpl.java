@@ -34,6 +34,9 @@ public class BlogServiceImpl implements BlogService {
 	public PageInfo<Blog> selectByPage(Blog blog, int start, int size) {
 		BlogExample example = new BlogExample();
 		BlogExample.Criteria criteria = example.createCriteria();
+		if(blog.getTypeid() != null){
+			criteria.andTypeidEqualTo(blog.getTypeid());
+		}
 		PageHelper.startPage(start, size);
 		List<Blog> blogs = blogMapper.selectByExampleWithBLOBs(example);
 		return new PageInfo<>(blogs);

@@ -2,6 +2,7 @@ package com.javalizi.blog.service.impl;
 
 import com.javalizi.blog.mapper.CommentMapper;
 import com.javalizi.blog.pojo.Comment;
+import com.javalizi.blog.pojo.CommentExample;
 import com.javalizi.blog.service.CommentService;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> list(Map<String, Object> map) {
-		return null;
+		CommentExample example = new CommentExample();
+		CommentExample.Criteria criteria = example.createCriteria();
+		criteria.andBlogidEqualTo((Integer) map.get("blogId"));
+		criteria.andStateEqualTo((Integer)map.get("state"));
+		return commentMapper.selectByExample(example);
 	}
 
 	@Override

@@ -9,18 +9,18 @@
 			<ul th:each="blog : ${pageInfo.list }">
 				<li style="margin-bottom: 30px">
 					<span class="date">
-						<a th:href="@{/blog/articles/${blog.id }.html}">
+						<a th:href="@{/blog/articles/{id}(id = ${blog.id })}">
 							<dd th:text="${#dates.format(blog.releasedate, 'yyyy年MM月dd日')}">2014-12-01</dd>
 						</a>
 					</span>
 					<span class="title">
-						<a th:href="@{/blog/articles/${blog.id }.html}" th:text="${blog.title }"></a>
+						<a th:href="@{/blog/articles/{id}(id = ${blog.id })}" th:text="${blog.title }"></a>
 					</span>
 					<span class="summary" th:text="${'摘要：'+ blog.summary + '...'}"></span>
 
 					<div>
 						<span style="display: inline-block" class="img" th:each="image : ${blog.imageList }">
-							<a th:href="@{/blog/articles/${blog.id }.html}" th:utext="${image}"></a>
+							<a th:href="@{/blog/articles/{id}(id = ${blog.id })}" th:utext="${image}"></a>
 						</span>
 					</div>
 					<span class="info">
