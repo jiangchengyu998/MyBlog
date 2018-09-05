@@ -74,7 +74,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Integer update(Blog blog) {
-		return null;
+		return blogMapper.updateByPrimaryKeySelective(blog);
 	}
 
 	@Override

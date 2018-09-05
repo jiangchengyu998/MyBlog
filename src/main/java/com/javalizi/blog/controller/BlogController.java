@@ -29,7 +29,6 @@ import java.util.Map;
  * @author Administrator
  *
  */
-//@Api(value = "BlogController",tags = "BlogController")
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
