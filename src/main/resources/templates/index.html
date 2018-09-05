@@ -40,11 +40,11 @@
                     <img th:src="@{/images/user_icon.png}"/>
                     博主信息
                 </div>
-                <!--<div class="user_image">-->
-                    <!--<img th:src="@{/userImages/${blogger.imageName}"/>-->
-                <!--</div>-->
-                <!--<div class="nickName">${blogger.nickName}</div>-->
-                <!--<div class="userSign">(${blogger.sign})</div>-->
+                <div class="user_image">
+                    <img th:src="@{/userImages/{id}(id = ${application.blogger.imagename })}"/>
+                </div>
+                <div class="nickName" th:text="${application.blogger.nickname}"></div>
+                <div class="userSign" th:text="${ '(' + application.blogger.sign + ')'}"></div>
             </div>
 
             <div class="data_list">
@@ -53,42 +53,35 @@
                     按日志类别
                 </div>
                 <div class="datas">
-                    <ul th:each="blogTypeCount :  ${blogTypeCountList }">
-                        <li><span><a th:href="@{/index(typeId=${blogTypeCount.id})}" th:text="${blogTypeCount.typename +' (' + blogTypeCount.orderno + ')' }"></a></span></li>
+                    <ul th:each="blogTypeCount :  ${application.blogTypeCountList }">
+                        <li><span><a th:href="@{/index(typeId=${blogTypeCount.id})}" th:text="${blogTypeCount.typename +' (' + blogTypeCount.blogCount + ')' }"></a></span></li>
                     </ul>
                 </div>
             </div>
 
-            <!--<div class="data_list">-->
-                <!--<div class="data_list_title">-->
-                    <!--<img th:src="@{/images/byDate_icon.png}"/>-->
-                    <!--按日志日期-->
-                <!--</div>-->
-                <!--<div class="datas">-->
-                    <!--<ul>-->
-                        <!--<c:forEach var="blogCount" items="${blogCountList }">-->
-                            <!--<li><span><a th:href="${pageContext.request.contextPath}/index.html?releaseDateStr=${blogCount.releaseDateStr}">${blogCount.releaseDateStr }(${blogCount.blogCount })</a></span></li>-->
-                        <!--</c:forEach>-->
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img th:src="@{/images/byDate_icon.png}"/>
+                    按日志日期
+                </div>
+                <div class="datas">
+                    <ul th:each="blogCount :  ${application.blogCountList }">
+                     <li><span><a th:href="@{/index(releaseDateStr=${blogCount.releaseDateStr})}" th:text="${blogCount.releaseDateStr + '(' + blogCount.blogCount + ')'}"></a></span></li>
+                    </ul>
+                </div>
+            </div>
 
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="data_list">-->
-                <!--<div class="data_list_title">-->
-                    <!--<img th:src="@{/images/link_icon.png}"/>-->
-                    <!--友情链接-->
-                <!--</div>-->
-                <!--<div class="datas">-->
-                    <!--<ul>-->
-                        <!--<c:forEach var="link" items="${linkList }">-->
-                            <!--<li><span><a th:href="${link.linkUrl }" target="_blank">${link.linkName }</a></span></li>-->
-                        <!--</c:forEach>-->
-
-
-                    <!--</ul>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img th:src="@{/images/link_icon.png}"/>
+                    友情链接
+                </div>
+                <div class="datas">
+                        <ul th:each="link :  ${application.linkList }">
+                            <li><span><a th:href="${link.linkurl }" target="_blank" th:text="${link.linkname }" /></span></li>
+                        </ul>
+                </div>
+            </div>
 
         </div>
     </div>

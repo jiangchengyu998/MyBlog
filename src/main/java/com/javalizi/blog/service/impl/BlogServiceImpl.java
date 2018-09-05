@@ -6,6 +6,7 @@ import com.javalizi.blog.mapper.BlogMapper;
 import com.javalizi.blog.pojo.Blog;
 import com.javalizi.blog.pojo.BlogExample;
 import com.javalizi.blog.service.BlogService;
+import com.javalizi.blog.util.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,6 +36,9 @@ public class BlogServiceImpl implements BlogService {
 		if(blog.getTypeid() != null){
 			criteria.andTypeidEqualTo(blog.getTypeid());
 		}
+		if(StringUtil.isNotEmpty(blog.getReleaseDateStr())){
+			example.setReleaseDateStr(blog.getReleaseDateStr());
+		}
 		PageHelper.startPage(start, size);
 		List<Blog> blogs = blogMapper.selectByExampleWithBLOBs(example);
 		return new PageInfo<>(blogs);
@@ -45,8 +49,7 @@ public class BlogServiceImpl implements BlogService {
 	 */
 	@Override
 	public List<Blog> countList() {
-		BlogExample example = new BlogExample();
-		return blogMapper.selectByExampleWithBLOBs(example);
+		return blogMapper.countList();
 	}
 
 	/**

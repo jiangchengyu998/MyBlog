@@ -41,6 +41,9 @@
           </trim>
         </if>
       </foreach>
+      <if test="releaseDateStr!=null and releaseDateStr!='' ">
+        and DATE_FORMAT(releaseDate,'%Y-%m')=#{releaseDateStr}
+      </if>
     </where>
   </sql>
   <sql id="Update_By_Example_Where_Clause" >
@@ -202,6 +205,27 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+  </select>
+
+  <resultMap type="com.javalizi.blog.pojo.Blog" id="BlogResult">
+    <result property="id" column="id"/>
+    <result property="title" column="title"/>
+    <result property="summary" column="summary"/>
+    <result property="releasedate" column="releaseDate"/>
+    <result property="clickhit" column="clickHit"/>
+    <result property="replyhit" column="replyHit"/>
+    <result property="content" column="content"/>
+    <result property="keyword" column="keyWord"/>
+
+    <association property="blogType" column="typeId" select="com.javalizi.blog.mapper.BlogTypeMapper.selectByPrimaryKey"></association>
+  </resultMap>
+
+  <select id="countList" resultMap="BlogResult">
+    SELECT DATE_FORMAT(releaseDate,'%Y-%m') AS releaseDateStr
+    ,COUNT(*) AS blogCount
+    FROM blog
+    GROUP BY DATE_FORMAT(releaseDate,'%Y-%m')
+    ORDER BY  DATE_FORMAT(releaseDate,'%Y-%m') DESC;
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update blog

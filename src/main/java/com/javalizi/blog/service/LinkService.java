@@ -2,9 +2,9 @@ package com.javalizi.blog.service;
 
 
 import com.javalizi.blog.pojo.Link;
+import com.javalizi.blog.pojo.LinkExample;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Administrator
@@ -13,16 +13,16 @@ import java.util.Map;
 public interface LinkService {
 
 	/**
-	 * @param map
+	 * @param example
 	 * @return
 	 */
-	public List<Link> list(Map<String, Object> map);
+	public List<Link> list(LinkExample example);
 
 	/**
-	 * @param map
+	 * @param example
 	 * @return
 	 */
-	public Long getTotal(Map<String, Object> map);
+	public Long getTotal(LinkExample example);
 	
 	/**
 	 * @param link

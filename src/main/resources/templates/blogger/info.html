@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<div class="data_list">
+ 		<div class="data_list_title">
+	<img th:src="@{/images/about_icon.png}"/>
+	关于博主</div>
+	<div style="padding: 30px" th:utext="${application.blogger.profile }">
+		${blogger.profile }
+	</div>
+</div>
+</html>

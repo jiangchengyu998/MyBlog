@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BlogExample {
+    protected String releaseDateStr;
     protected String orderByClause;
 
     protected boolean distinct;
@@ -13,6 +14,14 @@ public class BlogExample {
 
     public BlogExample() {
         oredCriteria = new ArrayList<Criteria>();
+    }
+
+    public String getReleaseDateStr() {
+        return releaseDateStr;
+    }
+
+    public void setReleaseDateStr(String releaseDateStr) {
+        this.releaseDateStr = releaseDateStr;
     }
 
     public void setOrderByClause(String orderByClause) {

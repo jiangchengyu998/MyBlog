@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="typeName" property="typename" jdbcType="VARCHAR" />
     <result column="orderNo" property="orderno" jdbcType="INTEGER" />
+    <result column="blogCount" property="blogCount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, typeName, orderNo
+    t1.id, t1.typeName, t1.orderNo
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.javalizi.blog.pojo.BlogTypeExample" >
     select
@@ -73,7 +74,10 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from blog_type
+    , count(t2.id) as blogCount
+    from blog_type t1
+    left join blog t2 on t2.typeId=t1.id
+    GROUP BY t1.typeName
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>

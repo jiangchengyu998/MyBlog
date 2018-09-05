@@ -7,6 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface BlogMapper {
+    /**
+     * 根据日期分月分组查询
+     * @return
+     */
+    public List<Blog> countList();
+
     int countByExample(BlogExample example);
 
     int deleteByExample(BlogExample example);

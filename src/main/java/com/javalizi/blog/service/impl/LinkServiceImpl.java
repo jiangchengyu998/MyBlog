@@ -2,12 +2,12 @@ package com.javalizi.blog.service.impl;
 
 import com.javalizi.blog.mapper.LinkMapper;
 import com.javalizi.blog.pojo.Link;
+import com.javalizi.blog.pojo.LinkExample;
 import com.javalizi.blog.service.LinkService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Administrator
@@ -21,12 +21,12 @@ public class LinkServiceImpl implements LinkService {
 
 
 	@Override
-	public List<Link> list(Map<String, Object> map) {
-		return null;
+	public List<Link> list(LinkExample example) {
+		return linkMapper.selectByExample(example);
 	}
 
 	@Override
-	public Long getTotal(Map<String, Object> map) {
+	public Long getTotal(LinkExample example) {
 		return null;
 	}
 
