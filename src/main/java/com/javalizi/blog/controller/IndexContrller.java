@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 主页Contrller
+ * Contrller
  * @author Administrator
  *
  */
@@ -34,12 +34,12 @@ public class IndexContrller {
 	private BlogTypeService blogTypeService;
 	
 	/**
-	 * 请求主页
+	 * 棣栭〉
 	 * @return
 	 */
 	@RequestMapping("/index")
 	public String index(
-			            @RequestParam(value="page",required=false,defaultValue = "0")int page, // 当前页
+			            @RequestParam(value="page",required=false,defaultValue = "0")int page, // 锟斤拷前页
                         @RequestParam(value="typeId",required=false)String typeId,
                         @RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
                         HttpServletRequest request){

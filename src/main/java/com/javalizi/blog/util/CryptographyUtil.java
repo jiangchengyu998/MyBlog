@@ -3,7 +3,7 @@ package com.javalizi.blog.util;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
 /**
- * 加密工具
+ * 鍔犲瘑
  * @author Administrator
  *
  */
@@ -11,7 +11,7 @@ public class CryptographyUtil {
 
 	
 	/**
-	 * Md5加密
+	 * Md5鍔犲瘑
 	 * @param str
 	 * @param salt
 	 * @return
@@ -23,6 +23,6 @@ public class CryptographyUtil {
 	public static void main(String[] args) {
 		String password="123456";
 		
-		System.out.println("Md5加密："+CryptographyUtil.md5(password, "java1234"));
+		System.out.println("Md5鍔犲瘑"+CryptographyUtil.md5(password, "java1234"));
 	}
 }

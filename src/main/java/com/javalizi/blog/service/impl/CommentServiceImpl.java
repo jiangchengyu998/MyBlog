@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 评论Service实现类
  * @author Administrator
  *
  */

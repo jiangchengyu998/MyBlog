@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 友情链接Service实现类
  * @author Administrator
  *
  */

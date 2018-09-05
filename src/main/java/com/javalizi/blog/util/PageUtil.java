@@ -23,9 +23,9 @@ public class PageUtil {
 			StringBuffer pageCode=new StringBuffer();
 			pageCode.append("<li><a href='"+targetUrl+"?page=1&"+param+"'>首页</a></li>");
 			if(currentPage>1){
-				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>下一页</a></li>");
+				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>上一页</a></li>");
 			}else{
-				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>下一页</a></li>");
+				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage-1)+"&"+param+"'>上一页</a></li>");
 			}
 			for(int i=currentPage-2;i<=currentPage+2;i++){
 				if(i<1||i>totalPage){
@@ -40,7 +40,7 @@ public class PageUtil {
 			if(currentPage<totalPage){
 				pageCode.append("<li><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>下一页</a></li>");
 			}else{
-				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>上一页</a></li>");
+				pageCode.append("<li class='disabled'><a href='"+targetUrl+"?page="+(currentPage+1)+"&"+param+"'>下一页</a></li>");
 			}
 			pageCode.append("<li><a href='"+targetUrl+"?page="+totalPage+"&"+param+"'>尾页</a></li>");
 			return pageCode.toString();

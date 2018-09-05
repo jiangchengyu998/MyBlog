@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 博客Service实现类
  * @author Administrator
  *
  */
@@ -24,7 +23,6 @@ public class BlogServiceImpl implements BlogService {
 	private BlogMapper blogMapper;
 
 	/**
-	 * 分页查询博客列表
 	 * @param blog
 	 * @param start
 	 * @param size
@@ -43,7 +41,6 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	/**
-	 * 根据日期分月分组查询
 	 * @return
 	 */
 	@Override
@@ -53,7 +50,6 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	/**
-	 * 分页查询博客
 	 * @param map
 	 * @return
 	 */
@@ -63,7 +59,6 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	/**
-	 * 获取总记录数
 	 * @param map
 	 * @return
 	 */

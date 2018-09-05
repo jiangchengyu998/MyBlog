@@ -4,14 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 日期工具类
+ *
  * @author Administrator
  *
  */
 public class DateUtil {
 
 	/**
-	 * 日期对象转字符串
 	 * @param date
 	 * @param format
 	 * @return
@@ -26,7 +25,6 @@ public class DateUtil {
 	}
 	
 	/**
-	 * 字符串转日期对象
 	 * @param str
 	 * @param format
 	 * @return

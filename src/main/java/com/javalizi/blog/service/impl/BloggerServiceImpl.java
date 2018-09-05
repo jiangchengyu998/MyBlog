@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * 博主Service实现类
  * @author Administrator
  *
  */
@@ -20,7 +19,6 @@ public class BloggerServiceImpl implements BloggerService {
 
 
 	/**
-	 * 通过用户名查询用户
 	 * @param userName
 	 * @return
 	 */
@@ -30,7 +28,6 @@ public class BloggerServiceImpl implements BloggerService {
 	}
 
 	/**
-	 * 查询博主信息
 	 * @return
 	 */
 	@Override
@@ -39,7 +36,6 @@ public class BloggerServiceImpl implements BloggerService {
 	}
 
 	/**
-	 * 更新博主信息
 	 * @param blogger
 	 * @return
 	 */
