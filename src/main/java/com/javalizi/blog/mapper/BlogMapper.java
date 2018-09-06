@@ -40,4 +40,6 @@ public interface BlogMapper {
     int updateByPrimaryKeyWithBLOBs(Blog record);
 
     int updateByPrimaryKey(Blog record);
+
+    int updateReplyHit(@Param("id") Integer id, @Param("replyHit") Integer replyHit);
 }

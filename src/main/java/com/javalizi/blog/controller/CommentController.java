@@ -45,7 +45,8 @@ public class CommentController {
 			} catch (Exception e) {
 				result.put("success", false);
 				result.put("errorInfo", "出错了！");
-				throw new Exception();
+				ResponseUtil.write(response, result);
+				e.printStackTrace();
 			}
 		}
 		if(resultTotal>0){

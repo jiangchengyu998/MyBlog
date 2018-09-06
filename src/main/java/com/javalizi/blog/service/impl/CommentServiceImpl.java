@@ -1,10 +1,10 @@
 package com.javalizi.blog.service.impl;
 
+import com.javalizi.blog.mapper.BlogMapper;
 import com.javalizi.blog.mapper.CommentMapper;
 import com.javalizi.blog.pojo.Blog;
 import com.javalizi.blog.pojo.Comment;
 import com.javalizi.blog.pojo.CommentExample;
-import com.javalizi.blog.service.BlogService;
 import com.javalizi.blog.service.CommentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
 	@Resource
 	private CommentMapper commentMapper;
 	@Resource
-	private BlogService blogService;
+	private BlogMapper blogMapper;
 
 	@Override
 	public List<Comment> list(Map<String, Object> map) {
@@ -39,9 +39,8 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 	public int add(Comment comment) {
-		Blog blog=blogService.findById(comment.getBlogid());
-		blog.setReplyhit(blog.getReplyhit()+1);
-		blogService.update(blog);
+		Blog blog=blogMapper.selectByPrimaryKey(comment.getBlogid());
+		blogMapper.updateReplyHit(comment.getBlogid(),blog.getReplyhit()+1);
 		return commentMapper.insertSelective(comment);
 	}
 

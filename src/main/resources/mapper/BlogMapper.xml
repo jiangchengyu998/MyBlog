@@ -344,4 +344,9 @@
       keyWord = #{keyword,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateReplyHit">
+    update blog
+      set replyHit = #{replyHit,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>
