@@ -19,7 +19,9 @@ public interface BloggerService {
 	 * @return
 	 */
 	public Blogger find();
-	
+
+	public Blogger find(Blogger blogger);
+
 	/**
 	 * @param blogger
 	 * @return
