@@ -8,8 +8,11 @@ import com.javalizi.blog.pojo.BlogExample;
 import com.javalizi.blog.service.BlogService;
 import com.javalizi.blog.util.StringUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +20,7 @@ import java.util.Map;
  * @author Administrator
  *
  */
+@Transactional(readOnly = true, propagation = Propagation.NOT_SUPPORTED)
 @Service("blogService")
 public class BlogServiceImpl implements BlogService {
 
@@ -92,12 +96,26 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Integer add(Blog blog) {
-		return null;
+		blog.setReleasedate(new Date());
+		blog.setReplyhit(0);
+		blog.setClickhit(0);
+		return blogMapper.insertSelective(blog);
 	}
 
 	@Override
 	public Integer delete(Integer id) {
-		return null;
+		return blogMapper.deleteByPrimaryKey(id);
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Override
+	public Integer delete(String id) {
+		int result = 0;
+		String []idsStr=id.split(",");
+		for (String s : idsStr) {
+			result = blogMapper.deleteByPrimaryKey(Integer.parseInt(s));
+		}
+		return result;
 	}
 
 	@Override

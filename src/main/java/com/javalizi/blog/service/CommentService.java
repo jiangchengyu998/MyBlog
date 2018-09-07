@@ -1,6 +1,7 @@
 package com.javalizi.blog.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.javalizi.blog.pojo.Comment;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Map;
  *
  */
 public interface CommentService {
+
+	PageInfo<Comment> selectByPage(Comment comment, int start, int size);
 
 	/**
 	 * @param map
@@ -35,7 +38,9 @@ public interface CommentService {
 	 * @return
 	 */
 	public int update(Comment comment);
-	
+
+	public int update(String ids, Integer state);
+
 	/**
 	 * @param id
 	 * @return

@@ -73,7 +73,9 @@ public interface BlogService {
 	 * @return
 	 */
 	public Integer delete(Integer id);
-	
+
+	public Integer delete(String id);
+
 	/**
 	 * @param typeId
 	 * @return

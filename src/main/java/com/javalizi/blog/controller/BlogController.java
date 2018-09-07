@@ -80,12 +80,6 @@ public class BlogController {
 		map.put("state", 1);
 
         ModelAndView mav=new ModelAndView();
-//        Blogger blogger=bloggerService.find(); // 获取博主信息
-//        blogger.setPassword(null);
-//        mav.addObject("blogger", blogger);
-
-//		List<BlogType> blogTypeCountList = blogTypeService.countList();
-//        mav.addObject("blogTypeCountList", blogTypeCountList);
         mav.addObject("blog", blog);
         mav.addObject("commentList", commentService.list(map));
         mav.addObject("pageCode", this.getUpAndDownPageCode(blogService.getLastBlog(id), blogService.getNextBlog(id), request.getServletContext().getContextPath()));

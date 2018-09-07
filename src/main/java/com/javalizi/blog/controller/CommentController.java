@@ -39,6 +39,7 @@ public class CommentController {
 		String userIp=request.getRemoteAddr(); // 获取ip
 		comment.setUserip(userIp);
 		comment.setCommentdate(new Date());
+		comment.setState(0);
 		if(comment.getId()==null){
 			try {
 				resultTotal=commentService.add(comment);

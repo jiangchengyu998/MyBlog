@@ -1,5 +1,7 @@
 package com.javalizi.blog.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.javalizi.blog.mapper.BlogMapper;
 import com.javalizi.blog.mapper.CommentMapper;
 import com.javalizi.blog.pojo.Blog;
@@ -28,6 +30,22 @@ public class CommentServiceImpl implements CommentService {
 	private BlogMapper blogMapper;
 
 	@Override
+	public PageInfo<Comment> selectByPage(Comment comment, int start, int size) {
+		CommentExample example = new CommentExample();
+		CommentExample.Criteria criteria = example.createCriteria();
+		if(comment.getState() != null){
+			criteria.andStateEqualTo(comment.getState());
+		}
+		PageHelper.startPage(start, size);
+		List<Comment> comments = commentMapper.selectByExample(example);
+		for (Comment comment1 : comments) {
+			Blog blog = blogMapper.selectByPrimaryKey(comment1.getBlogid());
+			comment1.setBlog(blog);
+		}
+		return new PageInfo<>(comments);
+	}
+
+	@Override
 	public List<Comment> list(Map<String, Object> map) {
 		CommentExample example = new CommentExample();
 		CommentExample.Criteria criteria = example.createCriteria();
@@ -52,6 +70,18 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public int update(Comment comment) {
 		return 0;
+	}
+
+	@Override
+	public int update(String ids, Integer state) {
+		Comment comment = new Comment();
+		String []idsStr=ids.split(",");
+		for(int i=0;i<idsStr.length;i++){
+			comment.setId(Integer.parseInt(idsStr[i]));
+			comment.setState(state);
+			commentMapper.updateByPrimaryKey(comment);
+		}
+		return 1;
 	}
 
 	@Override
