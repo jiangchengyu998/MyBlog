@@ -27,7 +27,7 @@ public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("把博主信息和博客类型放在session.....");
+        System.out.println("把博主信息和博客类型放在context.....");
         ServletContext context = servletContextEvent.getServletContext();
         Blogger blogger=bloggerService.find(); // 获取博主信息
         blogger.setPassword(null);
@@ -38,7 +38,7 @@ public class ContextListener implements ServletContextListener {
         context.setAttribute("linkList", linkList);
         List<Blog> blogCountList = blogService.countList();
         context.setAttribute("blogCountList", blogCountList);
-        System.out.println("把博主信息和博客类型放在session 完毕.....");
+        System.out.println("把博主信息和博客类型放在context 完毕.....");
     }
 
     @Override
