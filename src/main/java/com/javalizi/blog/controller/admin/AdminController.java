@@ -65,4 +65,13 @@ public class AdminController {
     public String commentManage(){
         return "admin/commentManage";
     }
+
+    /**
+     * 转发个人信息管理
+     * @return
+     */
+    @RequestMapping("/modifyInfo")
+    public String modifyInfo(){
+        return "admin/modifyInfo";
+    }
 }

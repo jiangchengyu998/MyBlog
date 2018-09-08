@@ -69,6 +69,6 @@ public class BloggerServiceImpl implements BloggerService {
 	 */
 	@Override
 	public Integer update(Blogger blogger) {
-		return null;
+		return bloggerMapper.updateByPrimaryKeySelective(blogger);
 	}
 }
