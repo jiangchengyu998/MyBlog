@@ -36,6 +36,7 @@ public class BloggerController {
 				request.getSession().setAttribute("currentUser",blogger1);
 				mav.setViewName("redirect:main");
 			}else {
+				mav.addObject("errorInfo", "用户名或者密码错误！");
 				mav.addObject("blogger", blogger);
 				mav.setViewName("login");
 			}

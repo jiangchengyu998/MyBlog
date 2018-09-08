@@ -74,4 +74,12 @@ public class AdminController {
     public String modifyInfo(){
         return "admin/modifyInfo";
     }
+    /**
+     * 转发友情链接
+     * @return
+     */
+    @RequestMapping("/linkManage")
+    public String linkManage(){
+        return "admin/linkManage";
+    }
 }

@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 
 /**
- * 管理员博主Controller层
  * @author Administrator
  *
  */
@@ -30,7 +29,6 @@ public class BloggerAdminController {
 	private BloggerService bloggerService;
 	
 	/**
-	 * 查询博主信息
 	 * @param response
 	 * @return
 	 * @throws Exception
@@ -44,7 +42,6 @@ public class BloggerAdminController {
 	}
 	
 	/**
-	 * 修改博主信息
 	 * @param imageFile
 	 * @param blogger
 	 * @param response
@@ -62,16 +59,15 @@ public class BloggerAdminController {
 		int resultTotal=bloggerService.update(blogger);
 		StringBuffer result=new StringBuffer();
 		if(resultTotal>0){
-			result.append("<script language='javascript'>alert('修改成功！');</script>");
+			result.append("<script language='javascript'>alert('鎴愬姛');</script>");
 		}else{
-			result.append("<script language='javascript'>alert('修改失败！');</script>");
+			result.append("<script language='javascript'>alert('澶辫触');</script>");
 		}
 		ResponseUtil.write(response, result);
 		return null;
 	}
 	
 	/**
-	 * 修改博主密码
 	 * @param newPassword
 	 * @param response
 	 * @return
@@ -93,7 +89,6 @@ public class BloggerAdminController {
 	}
 	
 	/**
-	 * 注销
 	 * @return
 	 * @throws Exception
 	 */

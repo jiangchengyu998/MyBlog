@@ -1,6 +1,7 @@
 package com.javalizi.blog.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.javalizi.blog.pojo.Link;
 import com.javalizi.blog.pojo.LinkExample;
 
@@ -11,6 +12,9 @@ import java.util.List;
  *
  */
 public interface LinkService {
+
+	PageInfo<Link> selectByPage(Link link, int start, int size);
+
 
 	/**
 	 * @param example
@@ -41,4 +45,6 @@ public interface LinkService {
 	 * @return
 	 */
 	public Integer delete(Integer id);
+
+	public Integer delete(String ids);
 }
