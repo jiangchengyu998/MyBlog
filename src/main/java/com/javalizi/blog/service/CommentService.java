@@ -46,4 +46,6 @@ public interface CommentService {
 	 * @return
 	 */
 	public Integer delete(Integer id);
+
+	public Integer delete(String ids);
 }

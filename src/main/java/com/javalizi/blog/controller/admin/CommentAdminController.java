@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.javalizi.blog.pojo.Comment;
 import com.javalizi.blog.service.CommentService;
 import com.javalizi.blog.util.ResponseUtil;
+import com.javalizi.blog.util.StringUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -39,7 +40,9 @@ public class CommentAdminController {
 	public String list(@RequestParam(value="page",required=false)int page, @RequestParam(value="rows",required=false)int rows,
 					   @RequestParam(value="state",required=false)String state, HttpServletResponse response)throws Exception{
 		Comment comment = new Comment();
-		comment.setState(Integer.parseInt(state));
+		if(StringUtil.isNotEmpty(state)){
+			comment.setState(Integer.parseInt(state));
+		}
 		PageInfo<Comment> pageInfo = commentService.selectByPage(comment, page, rows);
 		JSONObject result=new JSONObject();
 		JsonConfig jsonConfig=new JsonConfig();
@@ -77,11 +80,8 @@ public class CommentAdminController {
 	 */
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(value="ids",required=false)String ids, HttpServletResponse response)throws Exception{
-		String []idsStr=ids.split(",");
 		JSONObject result=new JSONObject();
-		for(int i=0;i<idsStr.length;i++){
-			commentService.delete(Integer.parseInt(idsStr[i]));				
-		}
+		commentService.delete(ids);
 		result.put("success", true);
 		ResponseUtil.write(response, result);
 		return null;

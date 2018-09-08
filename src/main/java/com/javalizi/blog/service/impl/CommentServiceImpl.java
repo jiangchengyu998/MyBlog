@@ -88,4 +88,14 @@ public class CommentServiceImpl implements CommentService {
 	public Integer delete(Integer id) {
 		return null;
 	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	@Override
+	public Integer delete(String ids) {
+		String []idsStr=ids.split(",");
+		for(int i=0;i<idsStr.length;i++){
+			commentMapper.deleteByPrimaryKey(Integer.parseInt(idsStr[i]));
+		}
+		return 1;
+	}
 }

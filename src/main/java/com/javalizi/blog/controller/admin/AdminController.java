@@ -57,4 +57,12 @@ public class AdminController {
     public String blogTypeManage(){
         return "admin/blogTypeManage";
     }
+    /**
+     * 转发评论管理页面
+     * @return
+     */
+    @RequestMapping("/commentManage")
+    public String commentManage(){
+        return "admin/commentManage";
+    }
 }
