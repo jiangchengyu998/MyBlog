@@ -10,6 +10,7 @@ import com.javalizi.blog.util.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -120,6 +121,13 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public Integer getBlogByTypeId(Integer typeId) {
-		return null;
+		BlogExample example = new BlogExample();
+		BlogExample.Criteria criteria = example.createCriteria();
+		criteria.andTypeidEqualTo(typeId);
+		List<Blog> blogs = blogMapper.selectByExample(example);
+		if(!CollectionUtils.isEmpty(blogs)){
+			return 1;
+		}
+		return 0;
 	}
 }

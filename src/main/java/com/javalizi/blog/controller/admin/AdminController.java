@@ -48,4 +48,13 @@ public class AdminController {
     public String modifyBlog(){
         return "admin/commentReview";
     }
+
+    /**
+     * 转发到类别管理页面
+     * @return
+     */
+    @RequestMapping("/blogTypeManage")
+    public String blogTypeManage(){
+        return "admin/blogTypeManage";
+    }
 }
