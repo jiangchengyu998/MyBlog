@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 
 /**
@@ -59,9 +60,9 @@ public class BloggerAdminController {
 		int resultTotal=bloggerService.update(blogger);
 		StringBuffer result=new StringBuffer();
 		if(resultTotal>0){
-			result.append("<script language='javascript'>alert('成功');</script>");
+			result.append("<script language='javascript'>alert('保存成功！');</script>");
 		}else{
-			result.append("<script language='javascript'>alert('失败');</script>");
+			result.append("<script language='javascript'>alert('保存失败！');</script>");
 		}
 		ResponseUtil.write(response, result);
 		return null;
@@ -93,8 +94,8 @@ public class BloggerAdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/logout")
-	public String logout()throws Exception{
-		SecurityUtils.getSubject().logout(); 
-		return "redirect:/login.jsp";
+	public String logout(HttpServletRequest request)throws Exception{
+		request.getSession().removeAttribute("currentUser");
+		return "redirect:/blogger/login";
 	}
 }

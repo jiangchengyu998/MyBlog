@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement  // 开启事务
 public class BlogApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(BlogApplication.class, args);
     }

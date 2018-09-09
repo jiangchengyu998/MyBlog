@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 管理员博客Controller层
  * @author Administrator
  *
  */
@@ -28,7 +27,6 @@ public class BlogAdminController {
 	
 
 	/**
-	 * 添加或者修改博客信息
 	 * @param blog
 	 * @param response
 	 * @return
@@ -53,7 +51,6 @@ public class BlogAdminController {
 	}
 	
 	/**
-	 * 分页查询博客信息
 	 * @param page
 	 * @param rows
 	 * @param s_blog
@@ -76,7 +73,6 @@ public class BlogAdminController {
 	}
 	
 	/**
-	 * 博客信息删除
 	 * @param ids
 	 * @param response
 	 * @return
@@ -92,7 +88,6 @@ public class BlogAdminController {
 	}
 	
 	/**
-	 * 通过Id查找实体
 	 * @param id
 	 * @param response
 	 * @return
