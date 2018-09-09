@@ -18,7 +18,7 @@
 <script type="text/javascript" charset="gbk" th:src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
 
 <script type="text/javascript">
-	
+    var id = [[${id}]];
 	function submitData(){
 		var title=$("#title").val();
 		var blogTypeId=$("#blogTypeId").combobox("getValue")
@@ -32,7 +32,7 @@
 		}else if(content==null || content==''){
 			alert("请填写内容！");
 		}else{
-			$.post("${pageContext.request.contextPath}/admin/blog/save.do",{'id':'${param.id}','title':title,'blogType.id':blogTypeId,
+			$.post("/admin/blog/save",{'id':id,'title':title,'typeid':blogTypeId,
 				'contentNoTag':UE.getEditor('editor').getContentTxt(),
 				'content':content,'summary':UE.getEditor('editor').getContentTxt().substr(0,155),'keyWord':keyWord},function(result){
 				if(result.success){
@@ -90,7 +90,7 @@
 <!-- 实例化编辑器 -->
 <script th:inline="javascript">
     var ue = UE.getEditor('editor');
-    var id = [[${id}]];
+    <!-- var id = [[${id}]]; -->
     ue.addListener("ready",function(){
     	// 通过ajax请求数据
     	UE.ajax.request("/admin/blog/findById",
