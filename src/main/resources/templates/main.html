@@ -30,7 +30,7 @@
 	
 	function openPasswordModifyDialog(){
 		$("#dlg").dialog("open").dialog("setTitle","修改密码");
-		url="${pageContext.request.contextPath}/admin/blogger/modifyPassword.do";
+		url="/admin/blogger/modifyPassword";
 	}
 	
 	function modifyPassword(){
@@ -73,7 +73,7 @@
 	}
 
 	function refreshSystem(){
-		$.post("${pageContext.request.contextPath}/admin/system/refreshSystem.do",{},function(result){
+		$.post("/admin/system/refreshSystem",{},function(result){
 			if(result.success){
 				$.messager.alert("系统提示","已成功刷新系统缓存！");
 			}else{
