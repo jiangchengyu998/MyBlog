@@ -149,7 +149,7 @@
 			<tr>
 				<td>用户名：</td>
 				<td>
-					<input type="text" id="userName" name="userName" value="${currentUser.userName }" readonly="readonly" style="width: 200px"/>
+					<input type="text" id="username" name="username" th:value="${session.currentUser.username }" readonly="readonly" style="width: 200px"/>
 				</td>
 			</tr>
 			<tr>

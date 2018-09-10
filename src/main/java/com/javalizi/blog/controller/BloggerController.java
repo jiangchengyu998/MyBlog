@@ -2,6 +2,7 @@ package com.javalizi.blog.controller;
 
 import com.javalizi.blog.pojo.Blogger;
 import com.javalizi.blog.service.BloggerService;
+import com.javalizi.blog.util.CryptographyUtil;
 import com.javalizi.blog.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,9 @@ public class BloggerController {
 	@RequestMapping("/login")
 	public ModelAndView login(Blogger blogger, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
-		if(blogger != null && StringUtil.isNotEmpty(blogger.getUsername()) && StringUtil.isNotEmpty(blogger.getPassword())){
+		if(blogger != null && StringUtil.isNotEmpty(blogger.getUsername())
+				&& StringUtil.isNotEmpty(blogger.getPassword())){
+			blogger.setPassword(CryptographyUtil.md5(blogger.getPassword(),""));
 			Blogger blogger1 = bloggerService.find(blogger);
 			if(blogger1 != null){
 				blogger1.setPassword("");

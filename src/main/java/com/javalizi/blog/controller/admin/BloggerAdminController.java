@@ -6,7 +6,6 @@ import com.javalizi.blog.util.CryptographyUtil;
 import com.javalizi.blog.util.DateUtil;
 import com.javalizi.blog.util.ResponseUtil;
 import net.sf.json.JSONObject;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 
 /**
@@ -77,7 +75,8 @@ public class BloggerAdminController {
 	@RequestMapping("/modifyPassword")
 	public String modifyPassword(String newPassword, HttpServletResponse response)throws Exception{
 		Blogger blogger=new Blogger();
-		blogger.setPassword(CryptographyUtil.md5(newPassword,"java1234"));
+		blogger.setId(1);
+		blogger.setPassword(CryptographyUtil.md5(newPassword,""));
 		int resultTotal=bloggerService.update(blogger);
 		JSONObject result=new JSONObject();
 		if(resultTotal>0){
