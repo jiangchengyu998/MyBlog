@@ -42,9 +42,9 @@ public class IndexContrller {
 	 * 首页
 	 * @return
 	 */
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public ModelAndView index(
-			            @RequestParam(value="page",required=false,defaultValue = "0")int page, // ��ǰҳ
+			            @RequestParam(value="page",required=false,defaultValue = "0")int page, //
                         @RequestParam(value="typeId",required=false)String typeId,
                         @RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
                         HttpServletRequest request){
@@ -87,6 +87,21 @@ public class IndexContrller {
         mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath()+"/index", pageInfo.getTotal(), page, 8, param.toString()));
         mav.setViewName("index");
         return mav;
+	}
+
+	/**
+	 * 首页
+	 * @return
+	 */
+	@RequestMapping("/index2")
+	public ModelAndView index2(
+			@RequestParam(value="page",required=false,defaultValue = "0")int page, //
+			@RequestParam(value="typeId",required=false)String typeId,
+			@RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
+			HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index2");
+		return mav;
 	}
 
 
