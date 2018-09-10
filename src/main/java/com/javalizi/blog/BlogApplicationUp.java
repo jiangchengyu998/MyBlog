@@ -8,6 +8,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 public class BlogApplicationUp implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("BlogApplicationUp 启动了。。。");
+        System.out.println("程序 启动了。。。");
     }
 }

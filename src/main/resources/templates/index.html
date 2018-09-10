@@ -26,8 +26,8 @@
 <body>
 <body>
 <div class="container">
-
-    <div th:include="~{common/head :: #head}"></div>
+    <div th:replace="common/head::html" ></div>
+    <!--<div th:include="~{common/head :: #head}"></div>-->
     <div th:include="~{common/menu :: #menu}"></div>
 
     <div class="row">
@@ -86,10 +86,6 @@
         </div>
     </div>
 
-    <!--<div th:insert="common/foot :: foot1">aaa</div>-->
-
-    <!-- 通过 id 引用 -->
-    <!--<div th:replace="~{common/foot :: #foot}"></div>-->
     <div th:replace="common/foot::html" ></div>
 
 </div>

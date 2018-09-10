@@ -96,7 +96,7 @@
 	<table style="padding: 5px" width="100%">
 		<tr>
 			<td width="50%">
-				<img alt="logo" th:src="@{/images/logo.png}">
+				<img alt="mylogo" th:src="@{/images/mylogo.png}">
 			</td>
 			<td valign="bottom" align="right" width="50%">
 				<font size="3">&nbsp;&nbsp;<strong th:text="${'欢迎：' + session.currentUser.username }"></strong></font>
@@ -140,7 +140,8 @@
 	</div>
 </div>
 <div region="south" style="height: 25px;padding: 5px" align="center">
-	Copyright © 2012-2016 Java知识分享网 版权所有
+	<span style="float: left;">Powered by <a  href="http://www.democxy.com" target="_blank">java例子</a> V1.0</span>
+	Copyright © 2018 java例子 版权所有
 </div>
 
 <div id="dlg" class="easyui-dialog" style="width: 400px;height: 200px;padding: 10px 20px" closed="true" buttons="#dlg-buttons">
