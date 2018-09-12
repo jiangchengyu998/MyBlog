@@ -48,6 +48,7 @@ public class IndexContrller {
                         @RequestParam(value="typeId",required=false)String typeId,
                         @RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
                         HttpServletRequest request){
+		// 搜索条件
 		Blog b = new Blog();
 		if(StringUtil.isNotEmpty(typeId)){
 			b.setTypeid(Integer.parseInt(typeId));
@@ -77,14 +78,9 @@ public class IndexContrller {
 			param.append("releaseDateStr="+releaseDateStr+"&");
 		}
         ModelAndView mav=new ModelAndView();
-//        Blogger blogger=bloggerService.find(); // 获取博主信息
-//        blogger.setPassword(null);
-//        List<BlogType> blogTypeCountList = blogTypeService.countList();
-//        mav.addObject("blogger", blogger);
         mav.addObject("pageInfo", pageInfo);
-//        mav.addObject("blogTypeCountList", blogTypeCountList);
         mav.addObject("mainPage", "blog/list.html");
-        mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath()+"/index", pageInfo.getTotal(), page, 8, param.toString()));
+        mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath()+"/", pageInfo.getTotal(), page, 8, param.toString()));
         mav.setViewName("index");
         return mav;
 	}
@@ -100,6 +96,38 @@ public class IndexContrller {
 			@RequestParam(value="releaseDateStr",required=false)String releaseDateStr,
 			HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
+		// 搜索条件
+		Blog b = new Blog();
+		if(StringUtil.isNotEmpty(typeId)){
+			b.setTypeid(Integer.parseInt(typeId));
+		}
+		if(StringUtil.isNotEmpty(releaseDateStr)){
+			b.setReleaseDateStr(releaseDateStr);
+		}
+		PageInfo<Blog> pageInfo = blogService.selectByPage(b, page, 8);
+		for(Blog blog:pageInfo.getList()){
+			List<String> imageList=blog.getImageList();
+			String blogInfo=blog.getContent();
+			Document doc= Jsoup.parse(blogInfo);
+			Elements jpgs=doc.select("img[src$=.jpg]");
+			for(int i=0;i<jpgs.size();i++){
+				Element jpg=jpgs.get(i);
+				imageList.add(jpg.toString());
+				if(i==2){
+					break;
+				}
+			}
+		}
+		StringBuffer param=new StringBuffer();
+		if(StringUtil.isNotEmpty(typeId)){
+			param.append("typeId="+typeId+"&");
+		}
+		if(StringUtil.isNotEmpty(releaseDateStr)){
+			param.append("releaseDateStr="+releaseDateStr+"&");
+		}
+		mav.addObject("pageInfo", pageInfo);
+		mav.addObject("mainPage", "blog/list.html");
+		mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath()+"/", pageInfo.getTotal(), page, 8, param.toString()));
 		mav.setViewName("index2");
 		return mav;
 	}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <div class="logo"><a href="/"><img src="images/mylogo.png"></a></div>
+    <nav id="nav">
+        <ul>
+            <li><a th:href="@{/}">网站首页</a></li>
+            <li><a href="share.html">我的相册</a></li>
+            <li><a href="list.html">我的日记</a></li>
+            <li><a href="about.html">关于我</a></li>
+            <li><a href="gbook.html">留言</a></li>
+            <li><a href="info.html">内容页</a></li>
+            <li><a href="infopic.html">内容页</a></li>
+        </ul>
+    </nav>
+    <script>
+        window.onload = function ()
+        {
+            var obj=null;
+            var As=document.getElementById('nav').getElementsByTagName('a');
+            obj = As[0];
+            for(i=1;i<As.length;i++){
+                if(window.location.href.indexOf(As[i].href)>=0)
+                obj=As[i];
+            }
+            obj.id='selected'
+        }
+    </script>
+</header>
+</body>
+</html>
