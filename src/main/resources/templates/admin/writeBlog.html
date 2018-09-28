@@ -17,6 +17,32 @@
 <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 <script type="text/javascript" charset="gbk" th:src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
 
+`	<script charset="utf-8" src="/kindeditor/kindeditor-all.js"></script>
+	<script charset="utf-8" src="/kindeditor/lang/zh-CN.js"></script>
+	<script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id');
+        });
+        var options = {
+            cssPath : '/css/index.css',
+            filterMode : true
+        };
+        var editor = K.create('textarea[name="content"]', options);
+        // 取得HTML内容
+        html = editor.html();
+
+        // 同步数据后可以直接取得textarea的value
+        editor.sync();
+        html = document.getElementById('editor_id').value; // 原生API
+        html = K('#editor_id').val(); // KindEditor Node API
+        html = $('#editor_id').val(); // jQuery
+
+        // 设置HTML内容
+        editor.html('HTML内容');
+        // 关闭过滤模式，保留所有标签
+        KindEditor.options.filterMode = false;
+	</script>
+
 <script type="text/javascript">
 	
 	function submitData(){
@@ -79,7 +105,10 @@
 		<tr>
 			<td valign="top">博客内容：</td>
 			<td>
-				<script id="editor" name="content" type="text/plain" style="width:100%;height:500px;"></script>
+				<textarea id="editor_id" name="content" style="width:700px;height:300px;">
+					&lt;strong&gt;HTML内容&lt;/strong&gt;
+				</textarea>
+				<!--<script id="editor" name="content" type="text/plain" style="width:100%;height:500px;"></script>-->
 			</td>
 		</tr>
 		<tr>
